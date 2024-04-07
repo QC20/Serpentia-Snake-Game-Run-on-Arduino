@@ -17,16 +17,13 @@ int valueX = 0;
 int valueY = 0;
 unsigned char keyValue = 0;
 
-
-//Snake Value
-
+// Snake Value
 const uint8_t block[] PROGMEM = {
-  0xf0, //B1111000
-  0xb0, //B1011000
-  0xd0, //B1101000
-  0xf0, //B1111000
+  0xf0, // Binary: 11110000
+  0xb0, // Binary: 10110000
+  0xd0, // Binary: 11010000
+  0xf0, // Binary: 11110000
 };
-
 
 uint8_t snake_head_x = 4;
 uint8_t snake_head_y = 4;
@@ -45,7 +42,7 @@ int level = 1;
 int snake_speed = 150;
 int i;
 
-//按键扫描函数
+// Function to scan the joystick
 void keyScan(void)
 {
   static unsigned char keyUp = 1;
@@ -85,7 +82,7 @@ void keyScan(void)
         snake_dir = RIGHT;
       }
     }
-  } else if ((valueX > 10) && (valueX < 1010) && (valueY > 10) && (valueY < 1010))keyUp = 1;
+  } else if ((valueX > 10) && (valueX < 1010) && (valueY > 10) && (valueY < 1010)) keyUp = 1;
   return 0;
 }
 
@@ -96,21 +93,20 @@ void draw_snake(int x, int y)
 
 void show_score(int x, int y, int data)
 {
-  oled.setCursor(x, y);//设置显示位置
+  oled.setCursor(x, y);
   oled.println(data);
-
 }
 
 void screen(void)
 {
-  oled.clearDisplay();//清屏
-  oled.setTextSize(1); //设置字体大小
+  oled.clearDisplay();
+  oled.setTextSize(1);
   oled.drawRect(0, 1, 102, 62, 1);
   oled.drawRect(0, 0, 102, 64, 1);
-  oled.setCursor(104, 12);//设置显示位置
-  oled.println("LEVE");
-  oled.setCursor(104, 40);//设置显示位置
-  oled.println("SCOR");
+  oled.setCursor(104, 12);
+  oled.println("LEVEL");
+  oled.setCursor(104, 40);
+  oled.println("SCORE");
 
   show_score(110, 25, level);
   show_score(110, 53, score);
@@ -123,12 +119,11 @@ void screen(void)
   draw_snake(food_x, food_y);
 
   oled.display();
-
 }
 
 void draw_food(void)
 {
-  int food_out = 0; //判断食物是否在蛇体内
+  int food_out = 0;
 
   if (food_eaten)
   {
@@ -139,7 +134,7 @@ void draw_food(void)
       food_x = (uint8_t)(random(4, 100) / 4) * 4;
       food_y = (uint8_t)(random(4, 60) / 4) * 4;
 
-      for (int i = snake_len - 1; i > 0; i--) //遍历整个蛇身方块，若食物在蛇身内则重新生成
+      for (int i = snake_len - 1; i > 0; i--)
       {
         if (food_x == x[i] && food_y == y[i])
         {
@@ -171,7 +166,7 @@ void snake_move(void)
 
   if ((snake_head_x == food_x) && (snake_head_y == food_y))
   {
-    food_eaten = true; //可重新生成食物
+    food_eaten = true;
     snake_len++;
     score++;
     level = score / 5 + 1;
@@ -191,16 +186,15 @@ void snake_move(void)
 
 void draw_game_over()
 {
-  oled.clearDisplay();//清屏
-  oled.setTextSize(2); //设置字体大小
-  oled.setCursor(10, 10);//设置显示位置
-
+  oled.clearDisplay();
+  oled.setTextSize(2);
+  oled.setCursor(10, 10);
   oled.println("GAME OVER");
-  oled.setTextSize(1); //设置字体大小
-  oled.setCursor(30, 35);//设置显示位置
-  oled.println("LEVE:");
-  oled.setCursor(30, 55);//设置显示位置
-  oled.println("SCOR:");
+  oled.setTextSize(1);
+  oled.setCursor(30, 35);
+  oled.println("LEVEL:");
+  oled.setCursor(30, 55);
+  oled.println("SCORE:");
 
   show_score(80, 35, level);
   show_score(80, 55, score);
@@ -208,17 +202,15 @@ void draw_game_over()
   oled.display();
 }
 
-
-
 void check_snake_die(void)
 {
-  //撞墙
+  // Hit wall
   if (snake_head_x < 4 || snake_head_x > 96 || snake_head_y < 1 || snake_head_y > 56)
   {
     game_over = true;
   }
 
-  //自己吃自己
+  // Eat itself
   if (snake_len > 4)
   {
     for (int i = 1; i < snake_len; i++)
@@ -231,14 +223,12 @@ void check_snake_die(void)
   }
 }
 
-
 void setup()
 {
   oled.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-  oled.setTextColor(WHITE);//开像素点发光
-  randomSeed(analogRead(3));//初始化随机种子
+  oled.setTextColor(WHITE);
+  randomSeed(analogRead(3));
 }
-
 
 void loop()
 {
