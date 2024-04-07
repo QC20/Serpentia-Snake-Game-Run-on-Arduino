@@ -1,9 +1,9 @@
 #ifndef Food_h
 #define Food_h
 
-#include <Arduino.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_PCD8544.h>
+#include <Arduino.h> // This library comes with the Arduino IDE
+#include <Adafruit_GFX.h> // This library comes with the Arduino IDE
+#include <Adafruit_PCD8544.h> // This library comes with the Arduino IDE
 #include "SnakeGame.h"
 
 class Food{
