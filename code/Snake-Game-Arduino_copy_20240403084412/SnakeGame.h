@@ -8,7 +8,7 @@
 #define BUTTON_RIGHT  6
 #define BUTTON_LEFT   3
 
-#define LCD_BACKLIGHT_PIN 7
+#define LCD_BACKLIGHT_PIN 2
 #define LCD_BACKLIGHT_OFF 1
 #define LCD_BACKLIGHT_ON  0
 
