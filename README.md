@@ -1,4 +1,4 @@
-# Serpentia-Snake-Game-Run-on-Arduino
+# Serpentia - Snake Game Run on Arduino
 coming
 
 
