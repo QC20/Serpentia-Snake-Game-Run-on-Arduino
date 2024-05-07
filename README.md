@@ -21,7 +21,9 @@ While SCLK and DN must be connected to pins 13 and 11, the rest can use any comb
 
 **Nokia5110 to Arduino:**
 CE ----------------- 6
+
 RST ---------------- 7
+
 DC ----------------- 8
 DN ----------------- 11
 SCLK --------------- 13
