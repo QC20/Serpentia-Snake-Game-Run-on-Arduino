@@ -21,11 +21,14 @@ static const unsigned char startScreenBitmap[] = {
 
 // (CLK,DIN,D/C,CE,RST);
 Adafruit_PCD8544 display = Adafruit_PCD8544(
-  /*CLK=*/  13,
-  /*DIN=*/  11,
-  /*DC=*/   9,
-  /*CE=*/   10,
-  /*RST=*/  8
+  /*CLK=*/    13,
+  /*DIN=*/    11,
+  /*DC=*/     9,
+  /*CE=*/     10,
+  /*RST=*/    8
+  /*VCC=*///  3.3V or 5V (depending on your display model),
+  /*GND=*///  GND,
+  /*LIGHT=*///7 // Backlight control pin (optional)
 );
 
 
