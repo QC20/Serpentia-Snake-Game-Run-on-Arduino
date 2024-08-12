@@ -20,7 +20,14 @@ static const unsigned char startScreenBitmap[] = {
 };
 
 // (CLK,DIN,D/C,CE,RST);
-Adafruit_PCD8544 display = Adafruit_PCD8544(13, 11, 9, 10, 8);
+Adafruit_PCD8544 display = Adafruit_PCD8544(
+  /*CLK=*/  13,
+  /*DIN=*/  11,
+  /*DC=*/   9,
+  /*CE=*/   10,
+  /*RST=*/  8
+);
+
 
 // Game objects
 Snake snake = Snake();
